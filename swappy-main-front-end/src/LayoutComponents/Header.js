@@ -1,158 +1,116 @@
-import * as React from 'react';
-import{Link as ReactLink} from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import { MenuItem } from '@mui/material';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { grey } from '@mui/material/colors';
+import UserAvatar from "../UserScreenComponents/UserAvatar";
 
-const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: '#222831',
-      },
-      Secondary: {
-        // This is green.A700 as hex.
-        main: '#222831',
-      },
-    },
-  });
+function Header(){
 
- 
+    let row2Styling = {
+        "border-top":"1px solid lightgray",
+        "border-bottom":"1px solid lightgray"
+    }
 
-const pages = ['Home', 'About', 'Buy', 'Sell'];
-const settings = ['Profile','register', 'login'];
-const pagespaths=['/','/about','/buy','/sell']
-const settingpaths=['/profile','/registration','/login']
+    return(
+        <div>
+
+            <section className="navigation">
+
+                {/* Row 1 */}
+                <div className="row col-lg-10 col-md-10 mx-auto padding-y-1 justify-content-between">
+
+                    {/* Logo */}
+                    <div className="col-lg-2 col-md-2 my-auto">
+                        <a href="/">
+                            <img src="/images/logo.png" className="navigation-logo my-auto" alt="logo"/>
+                        </a>
+                    </div>
+
+                    {/* Search */}
+                    <div className="col-lg-8 col-md-7 row">
+                        <div className="col-lg-10 col-md-10 m-auto row">
+                            <form className="row col-lg-12 col-md-12">
+                                <input className="navigation-search my-auto col-lg-11 col-md-11" type="search" placeholder="I am looking for..." />
+                                <button type="submit" className="btn btn-primary col-lg-1 col-md-1 navigation-search-icon"><i className="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                    {/* CTA and Login */}
+                    <div className="col-lg-2 col-md-3 row">
+                        <div className="col-lg my-auto text-end">
+                            <a href="/cart">
+                                <i class="fa-solid fa-cart-shopping font-25"></i>
+                            </a>
+                        </div>
+                        <div className="col-lg my-auto text-end">
+                            {/* <a title="" href="/registration" className="text-end">
+                                <UserAvatar />
+                            </a> */}
+                            <a href="/account">
+                                <i class="fa-solid fa-user font-25 "></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
 
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+                {/* Row 2 */}
+                <div className="col-lg-10 col-md-10 mx-auto py-2 row justify-content-between" style={row2Styling}>
+                    <div className="col-lg col-md">
+                        <a href="/product-listing" className="nav-link">Living Room</a>
+                    </div>
+                    <div className="col-lg col-md">
+                        <a href="/" className="nav-link">Bedroom</a>
+                    </div>
+                    <div className="col-lg col-md">
+                        <a href="/" className="nav-link">Dining Room</a>
+                    </div>
+                    <div className="col-lg col-md"> 
+                        <a href="/" className="nav-link">Office</a>
+                    </div>
+                    <div className="col-lg col-md"> 
+                        <a href="/" className="nav-link">Outdoor</a>
+                    </div>
+                    <div className="col-lg col-md"> 
+                        <a href="/" className="nav-link">Bathroom</a>
+                    </div>
+                </div>
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+            </section>
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+            {/* Mobile Navigation */}
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+            <section class="col-12 mobile-navigation padding-y-1 m-auto">
 
-  return (
-    <ThemeProvider theme={theme}>
-    <AppBar position="static"  color="Secondary">
-      <Container maxWidth="xl">
-     
-        <Toolbar disableGutters>
+                <div class="row col-11 m-auto">
 
-         <div className="col-lg-2 col-md-1 my-auto">
-        <ReactLink to="/">
-        <img src="images/footer-logo.png" className="navigation-logo my-auto" alt="logo"/>
-        </ReactLink>
-         </div>  
+                    <div class="col my-auto">
+                        <i class="fa-solid fa-bars mobile-menu-icon" data-bs-toggle="offcanvas" data-bs-target="#demo"></i>
+                        <div class="offcanvas offcanvas-start" id="demo">
+                            <div class="offcanvas-header text-end">
+                            </div>
+                            <div class="offcanvas-body">
+                                <a href="/" class="nav-link mobile-nav-link font-25">Living Room</a>
+                                <a href="/" class="nav-link mobile-nav-link font-25">Bedroom</a>
+                                <a href="/" class="nav-link mobile-nav-link font-25">Kitchen</a>
+                                <a href="/" class="nav-link mobile-nav-link font-25">Dining Room</a>
+                                <a href="/" class="nav-link mobile-nav-link font-25">Outdoor</a>
+                                <a href="/" class="nav-link mobile-nav-link font-25">Bathroom</a>
+                            </div>
+                        </div>
+                    </div>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                    <div class="mobile-navigation-image col-5">
+                        <img src="./images/logo.png" class="navigation-logo" alt=""/>
+                    </div>
 
-          <Box sx={{ flexGrow: 1, display: { xs:'none', md: 'flex' } }}>
-            {pages.map((page,i) => (
-              <Button
-              
-                component={ReactLink}
-                to={pagespaths[i]}
-                key={page}
-                sx={{ mx: 1, my: 1, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+                    <div class="col">
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting,i) => (
-                <MenuItem key={setting} component={ReactLink}
-                to={settingpaths[i]}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                    </div>
 
-        </Toolbar>
-      </Container>
-    </AppBar>
-    </ThemeProvider>
-  );
+                </div>
+            </section>
+
+        </div>
+    )
 }
-export default ResponsiveAppBar;
+
+export default Header;

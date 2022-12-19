@@ -2,37 +2,24 @@ import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
+function RegistrationScreen(){
 
-
-function RegistrationScreen() {
-
-    // The states are: 
-    // (1) null, (2) "client error", (3) "loading", (4) "backend error", (5) "success"
     var [formState, setFormState] = useState(null);
     var [errorsState, setErrorsState] = useState([]);
 
-
-    // 1. Declare variables (not defined)
     var firstNameField;
     var lastNameField;
     var emailField;
     var passwordField;
     var avatarField;
-
      
-    // Create a JS object like an HTML form element 
     var formData = new FormData();
 
     function attachFile(evt) {
 
         console.log('file data', evt.target.files)
-        // Creating an array from the files attached by user
         var files = Array.from(evt.target.files);
 
         files.forEach(
@@ -122,129 +109,81 @@ function RegistrationScreen() {
         return <li>{str}</li>
     }
 
-    return (
-        
-        <Container maxWidth="sm">
-            <Box pt={8}>
-                <Typography component="h1" variant="h2">
-                    Registration
-                </Typography>
-            </Box>
+    return(
+    
+        <section className="mx-auto padding-y-4">
 
-            <Box mt={4} mb={2}>
-                <FormControl fullWidth sx={ { mb: 2 } }>
-                    <TextField 
-                    inputRef={ 
-                        function( thisElement ){
-                            firstNameField = thisElement;
-                        } 
-                    }
-                    label="Firstname" required={true}/>
-                </FormControl>
+        <form className="col-lg-10 mx-auto px-5 padding-y-5 bg-light" action="/registration" method="post">
 
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                   <TextField 
-                   inputRef={ 
-                        function( thisElement ){
-                            lastNameField = thisElement;
-                        } 
-                    }
-                   label="Lastname" required={true}/>
-                </FormControl>
+            <h1 className="text-center margin-bottom-4">Register Here</h1>
 
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                    <TextField 
-                    inputRef={ 
-                        function( thisElement ){
-                            emailField = thisElement;
-                        } 
-                    }
-                    label="Email" required={true}/>
-                </FormControl>
+            <div className="row margin-bottom-2">
 
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                    <TextField 
-                    inputRef={ 
-                        function( thisElement ){
-                            passwordField = thisElement;
-                        } 
-                    }
-                    type="password"
-                    label="Password" required={true} />
-                </FormControl>
-            </Box>
-            
-            <Box mt={4} mb={4}>
+                <div className="col-lg">
+                    <label for="firstName">First Name</label>
+                    <input className="input-underline w-100" type="text" name="firstName" id="firstName" inputRef={ (thisElement) => { firstNameField = thisElement} } required={true}/>
+                </div>
 
-                <Typography component="p" variant="body1" gutterBottom>
-                    Upload your profile picture (optional)
-                </Typography>
+                <div className="col-lg">
+                    <label for="lastName">Last Name</label>
+                    <input className="input-underline w-100" type="text" name="lastName" id="lastName" inputRef={ ( thisElement ) => { lastNameField = thisElement } } required={true} />
+                </div>
 
-                <br/>
+                <div className="col-lg">
+                    <label for="email">Email Address</label>
+                    <input className="input-underline w-100" type="email" name="email" id="email" inputRef={ ( thisElement ) => { emailField = thisElement;} } required={true}/>
+                </div>
 
-                <Button size="small" component="label" variant="contained" >
-                    Upload
-                    <input 
-                        ref={function(thisElement){ avatarField = thisElement }} 
-                        onClick={attachFile}
-                        onChange={attachFile}
-                        hidden accept="image/*" 
-                        multiple type="file" 
-                    />
-                </Button>
+            </div>
 
-            </Box>
+            <div className="row margin-bottom-2">
 
+                <div className="col-lg-4">
+                    <label for="phone">Phone Number</label>
+                    <input className="input-underline w-100" type="text" name="phone" id="phone" />
+                </div>
 
-            <Box display="flex">
-                
-                {
-                    formState !== "loading" &&
-                    <Button onClick={register} size="large" variant="contained">Send</Button>
-                }
-                
-                {
-                    formState === "loading" &&
-                    <CircularProgress />
-                }
+                <div className="col-lg-4">
+                    <label for="password">Password</label>
+                    <input className="input-underline w-100" type="password" name="password" id="password" inputRef={ ( thisElement ) => { passwordField = thisElement;} } required={true}/>
+                </div>
+
+            </div>
+
+            <div className="col-lg">
+            <Button size="small" variant="contained" component="label">
+                Upload
+                <input ref={function(thisElement){ avatarField = thisElement }} onClick={attachFile} onChange={attachFile} hidden accept="image/*" multiple type="file" />
+            </Button>
+            </div>
+
+            <div className="row margin-y-2">
+
+                <div className="col-lg-4">
+                    <input type="checkbox" name="firstName" id="firstName" />
+                    <label class="ms-3" for="firstName"> I agree to the Terms & Conditions</label>
+                </div>
+
+            </div>
+
+            <Box display="flex">      
+                { formState !== "loading" && <div className="col-lg-3 row mx-auto"> <button className="btn btn-primary" onClick={register}>Sign Up</button> </div> }
+                { formState === "loading" && <CircularProgress /> }
             </Box>
 
             <Box mt={2}>
+                { formState === "client error" && <Alert severity="error">
+                        <ul> { errorsState.map(addListItem) } </ul> </Alert>}
 
-                { 
-                    formState === "client error" &&
-                    <Alert severity="error">
-                        <ul>
-                        {
-                            errorsState.map(addListItem)
-                        }
-                        </ul>
-                    </Alert>
-                }
+                { formState === "backend error" && <Alert severity="error">
+                        <ul> { errorsState.map(addListItem) } </ul> </Alert>}
 
-                { 
-                    formState === "backend error" &&
-                    <Alert severity="error">
-                        <ul>
-                        {
-                            errorsState.map(addListItem)
-                        }
-                        </ul>
-                    </Alert>
-                }
-
-                {
-                    formState === "success" &&
-                    <Alert severity="success">
-                        You have registered successfully!
-                    </Alert>
-                }
+                { formState === "success" && <Alert severity="success"> You have registered successfully! </Alert> }
             </Box>
-           
-        </Container>
-        
-    )
 
+        </form>
+    </section>
+    )
 }
 
-export default RegistrationScreen;
+export default RegistrationScreen

@@ -1,4 +1,4 @@
-import ProductCard from "./HomeComponents/ProductCard"
+import ProductCard from "./ProductCard"
 
 function ProductPage(){
 

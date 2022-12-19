@@ -9,6 +9,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ProductPage from "./ProductPage";
 import RegistrationScreen from "./RegistrationScreen";
 import AddProduct from "./AddProduct";
+import AddProductScreen from "./AddProductScreen";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <LayoutRoute path="/account" exact={true} component={UserScreen} />
         <LayoutRoute path="/cart" exact={true} component={Cart} />
         <LayoutRoute path="/add-product" exact={true} component={AddProduct} />
+        <LayoutRoute path="/add-product-screen" exact={true} component={AddProductScreen} />
       </Switch>
     </BrowserRouter>
   );

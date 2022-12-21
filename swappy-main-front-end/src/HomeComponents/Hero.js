@@ -3,10 +3,10 @@ function Hero(){
     let heroStyle = {
         "padding":"12% 0",
         "width":"97%",
-        "background": "linear-gradient(90deg,rgba(0,0,0,1),rgba(126, 217, 87, 0)), url(/images/img3.png)",
+        "background": "linear-gradient(90deg,rgba(0,0,0,0.9),rgba(126, 217, 87, 0)), url(/images/img3.png)",
+        "background-position":"center",
+        "background-repeat":"no-repeat",
         "background-size":"cover",
-        "background-repeat": "no-repeat", 
-        "background-position": "right",
         "border-radius": "12px",
     }
 
@@ -27,7 +27,6 @@ function Hero(){
                     <p class="text-light">The only online marketplace where you can buy, sell and deliver your furniture hassle-free.</p>
                 </div>
                 <button class="btn btn-primary" style={btnStyle}>Buy Furniture</button>
-                <button class="btn btn-primary-outline ms-2" style={btnStyle}>Sell Furniture</button>
             </div>
         </section>
     )

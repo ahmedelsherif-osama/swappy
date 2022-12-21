@@ -17,29 +17,30 @@ function Testimonials(){
     }
 
     let testimonialsContent ={
-        "margin-top":"3%",
-        "margin-bottom":"-3%"
+        "margin-top":"5%",
+        "margin-bottom":"-5%"
     }
 
     return(
         <section style={sectionStyle}>
 
-            <div className="col-lg-9 mx-auto row">
+            <div className="col-lg-9 mx-auto row text-dark">
 
                 <div className="col-lg-6 bg-light">
                     <div className="container-fluid mx-auto" style={testimonialsImg}>
                     </div>
                 </div>
 
-                <div className="col-lg-6 bg-light padding-y-3" style={testimonialsContent}>
+                <div className="col-lg-6 bg-light padding-top-5" style={testimonialsContent}>
 
-                    <div className="text-center">
-                        <h3 className="text-dark">Happy Customers!</h3>
-                    </div>
+                        <div className="text-center">
+                            <h3 className="text-dark">Happy Customers!</h3>
+                        </div>
 
-                    <div>
-
-                    </div>
+                        <div className="col-lg-8 mx-auto text-center margin-top-3">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br /><br /></p>
+                            <h6 className="bold">- John Doe</h6>
+                        </div>
 
                 </div>
             </div>

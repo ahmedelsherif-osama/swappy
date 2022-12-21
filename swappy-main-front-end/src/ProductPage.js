@@ -1,11 +1,6 @@
-import ProductCard from "./ProductCard"
+import ProductCard from "./ProductCard";
 
 function ProductPage(){
-
-    let boxShadow = {
-        "box-shadow": "0px 0px 17px 12px lightgray",
-        "border-radius":"8px"
-    }
 
     let productImage ={
         "height":"450px",
@@ -75,15 +70,14 @@ function ProductPage(){
 
                 <h3 className="text-center">Related Items</h3>
 
-                <ProductCard productName={productDetails.name} productPrice={productDetails.price} productLocation={productDetails.location} />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <ProductCard name={productDetails.name} price={productDetails.price} location={productDetails.location} />
+                <ProductCard name={productDetails.name} price={productDetails.price} location={productDetails.location} />
+                <ProductCard name={productDetails.name} price={productDetails.price} location={productDetails.location} />
+                <ProductCard name={productDetails.name} price={productDetails.price} location={productDetails.location} />
 
             </div>
 
         </section>
     )
 }
-
 export default ProductPage;

@@ -1,22 +1,26 @@
-import BestsellingProducts from "./HomeComponents/BestsellingProducts"
+import ProductCard from "./ProductCard"
+import products from "./products"
+
+function createProductCard(products){
+    return(
+        <ProductCard name={products.name} price={products.price} location={products.location} img={products.img} />
+    )
+}
 
 function ProductListing(){
 
-    let listingTitle = {
-        "background-color":"#222831",
-        "color":"#EEEEEE"
-    }
-
     return(
-        <div>
-            <div className="container-fluid text-center padding-y-5" style={listingTitle}>
-                <h1>Decorate Your Living Room</h1>
+        <section>
+            
+            <div className="bg-dark text-light text-center padding-y-4">
+                <h1>Product Listing</h1>
             </div>
-            <BestsellingProducts />
-            <BestsellingProducts />
-            <BestsellingProducts />
-            <BestsellingProducts />
-        </div>
+
+            <div className="col-lg-10 col-10 col-md-10 row mx-auto margin-y-1">
+                {products.map(createProductCard)}
+            </div>
+            
+        </section>
     )
 }
 
